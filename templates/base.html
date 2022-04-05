@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} {% endblock%}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='static/css/stylesheet.css') }}">
 </head>
 <body>
     <div>
-        <h1>Welcome to Software Design</h1>
-        <hr>
-        <br>
+        <h1>Vertical Tank Maintenance</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="about">About Us</a></li>
+                <li><a href="estimate">Get an Estimate</a></li>
+            </ul>
+        </nav>
         
         {% block body %}
 
         {% endblock %}
 
     </div>
+    <footer>&copy;VTM 2020</footer>
 </body>
 </html>
