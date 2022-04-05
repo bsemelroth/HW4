@@ -15,5 +15,7 @@
     <input type="text" id="height" name="height" /><br /><br />
     <input type="submit" id="submit" value="Submit" />
   </form>
-
+{% if quote %}
+The estimate for painting is {{quote}}.
+{% endif %}
 {% endblock %}

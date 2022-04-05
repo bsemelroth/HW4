@@ -14,7 +14,7 @@ def about():
 def estimate():
     return render_template('estimate.html')
 
-@app.route('/math', methods=['POST'])
+@app.route('/math', methods=['GET', 'POST'])
 def math():
         if request.method == 'POST':
             form = request.form
@@ -37,7 +37,7 @@ def math():
             print(Labor_Cost)
             Total_Cost = Material_Cost + Labor_Cost
             print(Total_Cost)
-            return render_template('estimate.html')
+            return render_template('estimate.html', quote=Total_Cost)
         return render_template('estimate.html')
 
 if __name__ == '__main__':
