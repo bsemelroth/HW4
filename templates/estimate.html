@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %} Welcome to Mike's Page {% endblock %}
+{% block title %} Tank Painting Estimate {% endblock %}
 
 
-{% block body %} It's Mike! {% endblock %}
+{% block body %} 
+<h1>VTM Estimator</h1>
+<hr>
+<br>
+
+<form action="/math" method="POST">
+    <label for="radius">Radius:</label>
+    <input type="text" id="radius" name="radius" /><br /><br />
+    <label for="height">Height:</label>
+    <input type="text" id="height" name="height" /><br /><br />
+    <input type="submit" id="submit" value="Submit" />
+  </form>
+
+{% endblock %}
