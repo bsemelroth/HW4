@@ -10,35 +10,22 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/estimate')
+@app.route('/estimate', methods=['GET','POST'])
 def estimate():
-    return render_template('estimate.html')
-
-@app.route('/math', methods=['GET', 'POST'])
-def math():
-        if request.method == 'POST':
-            form = request.form
-            radius = int(form['radius'])
-            height = int(form['height'])
-            pi = float(3.14)
-            print(radius)
-            print(height)
-            Top_Area = pi*(radius)**2
-            print(Top_Area)
-            Side_Area = 2*(pi*(radius*height))
-            print(Side_Area)
-            Total_Area = Top_Area+Side_Area
-            print(Total_Area)
-            Total_AreaSQF = Total_Area/144
-            print(Total_AreaSQF)
-            Material_Cost = Total_AreaSQF*25
-            print(Material_Cost)
-            Labor_Cost = Total_AreaSQF*15
-            print(Labor_Cost)
-            Total_Cost = Material_Cost + Labor_Cost
-            print(Total_Cost)
-            return render_template('estimate.html', quote=Total_Cost)
-        return render_template('estimate.html')
+    if request.method == 'POST':
+        form = request.form
+        radius = float(form['radius'])
+        height = float(form['height'])
+        pi = 3.14
+        tank_top = pi * radius**2
+        tank_side = 2 * (pi * (radius * height))
+        tank_area = tank_top + tank_side
+        total_sqft = tank_area / 144
+        material_cost = total_sqft * 25
+        labor_cost = total_sqft * 15
+        total_estimate = "${:,.2f}".format(round(material_cost + labor_cost, 2))
+        return render_template('estimate.html', estimate = total_estimate)
+    return render_template('estimate.html', pageTitle='VTM Estimator')
 
 if __name__ == '__main__':
     app.run(debug=True)
